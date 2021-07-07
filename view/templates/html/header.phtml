@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+
+header("Content-Security-Policy-Report-Only: default-src 'none'; form-action 'none'; frame-ancestors 'none'; report-uri https://7707e394488ce1459089eba2032c2ee5.report-uri.com/r/d/csp/wizard");
+
+?>
+<?php if ($block->getShowPart() == 'welcome') : ?>
+    <li class="greet welcome" data-bind="scope: 'customer'">
+        <!-- ko if: customer().fullname  -->
+        <span class="logged-in"
+              data-bind="text: new String('<?= $block->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+        </span>
+        <!-- /ko -->
+        <!-- ko ifnot: customer().fullname  -->
+        <span class="not-logged-in"
+              data-bind='html:"<?= $block->escapeHtml($welcomeMessage) ?>"'></span>
+        <?= $block->getBlockHtml('header.additional') ?>
+        <!-- /ko -->
+    </li>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+<?php elseif ($block->getShowPart() == 'other') :?>
+    <?= $block->getChildHtml() ?>
+<?php endif ?>
