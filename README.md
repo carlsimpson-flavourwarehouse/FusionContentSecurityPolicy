@@ -1,10 +1,8 @@
 # FusionContentSecurityPolicy
 
-This Module uses whitelist.xml to block errors generated to teh console via teh magento_Csp
+Add your thirdparty urls/domains to csp_whitelist.xml. 
 
-we use https://report-uri.com/ to callback lists of links to add to teh list.
-
-
+https://report-uri.com/ 
 
 Future Improvement
 --------------------
