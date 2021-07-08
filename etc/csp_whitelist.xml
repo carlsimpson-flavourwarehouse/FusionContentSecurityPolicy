@@ -145,16 +145,3 @@
         </policy>
     </policies>
 </csp_whitelist>
-
-<!--
-
-Policy Template
-================
-
-<policy id="*-src">
-<values>
-    <value id="*" type="host"> * </value>
-</values>
-</policy>
-
--->
